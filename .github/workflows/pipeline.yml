@@ -1,0 +1,20 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: deploy web sala g
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy no EC2 - aws
+        run: |
+            echo "Conectando no EC2"
+            echo "${{secrets.AWS_KEY_G}}" > private_key && chmod 600 private_key
+            ssh -o StrictHostKeyChecking=no -i private_key ubuntu@ec2-34-224-197-174.compute-1.amazonaws.com "
+              cd /var/www/html && git pull"
