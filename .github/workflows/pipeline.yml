@@ -15,6 +15,6 @@ jobs:
       - name: Deploy no EC2 - aws
         run: |
             echo "Conectando no EC2"
-            echo "${{secrets.AWS_KEY_G}}" > private_key && chmod 600 private_key
-            ssh -o StrictHostKeyChecking=no -i private_key ubuntu@ec2-34-224-197-174.compute-1.amazonaws.com "
+            echo "${{secrets.AWS_KEY_G}}" > private_key && chmod 600 private_key.pem
+            ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@ec2-34-224-197-174.compute-1.amazonaws.com "
              cd /var/www/html && git pull"
